@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMW M4 Coupe - The Ultimate Driving Machine</title>
+    <meta name="description" content="Rasakan performa legendaris BMW M4 Coupe. Desain agresif, mesin M TwinPower Turbo 503 HP, dan teknologi kokpit modern. Konfigurasikan mobil Anda sekarang.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Style -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-theme">
+    
+    <!-- Ambient Background Glow -->
+    <div id="ambient-glow" class="ambient-glow-yellow"></div>
+
+    <!-- Navigation Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <a href="#" class="logo">
+                <span class="bmw-m-stripes">
+                    <span class="stripe-blue"></span>
+                    <span class="stripe-purple"></span>
+                    <span class="stripe-red"></span>
+                </span>
+                <span class="logo-text">M PERFORMANCE</span>
+            </a>
+            
+            <nav class="nav-links">
+                <a href="#configurator" class="nav-link active">Configurator</a>
+                <a href="#cockpit" class="nav-link">Cockpit Experience</a>
+                <a href="#performance" class="nav-link">Performance</a>
+                <a href="#gallery" class="nav-link">Gallery</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="btn btn-secondary btn-nav" id="btn-sound-toggle" title="Matikan Efek Suara">
+                    <i class="fa-solid fa-volume-high"></i>
+                </button>
+                <a href="#configurator" class="btn btn-primary" id="btn-header-cta">Book Test Drive</a>
+            </div>
+
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav" id="mobile-nav">
+        <a href="#configurator" class="mobile-nav-link">Configurator</a>
+        <a href="#cockpit" class="mobile-nav-link">Cockpit Experience</a>
+        <a href="#performance" class="mobile-nav-link">Performance</a>
+        <a href="#gallery" class="mobile-nav-link">Gallery</a>
+        <a href="#configurator" class="btn btn-primary w-full text-center mt-4">Book Test Drive</a>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        
+        <!-- Hero & Configurator Section -->
+        <section id="configurator" class="hero-section scroll-reveal">
+            <div class="container hero-grid">
+                <div class="hero-info">
+                    <span class="badge">Eksklusivitas Tanpa Batas</span>
+                    <h1 class="hero-title animate-title">THE BMW M4 <span class="text-accent gradient-text" id="color-name-display">COUPE</span></h1>
+                    <p class="hero-desc">Didesain untuk mendominasi jalanan dan sirkuit. Paduan sempurna antara estetika radikal, aerodinamika presisi, dan tenaga M TwinPower Turbo murni.</p>
+                    
+                    <!-- Floating Specs Grid -->
+                    <div class="hero-specs-grid">
+                        <div class="spec-card">
+                            <span class="spec-value">3.4 <span class="spec-unit">Detik</span></span>
+                            <span class="spec-label">0-100 KM/H</span>
+                        </div>
+                        <div class="spec-card">
+                            <span class="spec-value">503 <span class="spec-unit">HP</span></span>
+                            <span class="spec-label">TENAGA MESIN</span>
+                        </div>
+                        <div class="spec-card">
+                            <span class="spec-value">650 <span class="spec-unit">Nm</span></span>
+                            <span class="spec-label">TORSI PUNCAK</span>
+                        </div>
+                    </div>
+
+                    <!-- Configurator Panel -->
+                    <div class="config-panel glass-card">
+                        <h3 class="panel-title">M Exterior Colors</h3>
+                        <p class="panel-subtitle">Pilih warna karakter Anda:</p>
+                        <div class="color-selectors">
+                            <button class="color-swatch active" data-color="yellow" data-color-name="Sao Paulo Yellow" style="background-color: #e5f522;" title="Sao Paulo Yellow" aria-label="Sao Paulo Yellow Paint"></button>
+                            <button class="color-swatch" data-color="green" data-color-name="Isle of Man Green" style="background-color: #074737;" title="Isle of Man Green" aria-label="Isle of Man Green Paint"></button>
+                            <button class="color-swatch" data-color="blue" data-color-name="Portimao Blue" style="background-color: #0d2975;" title="Portimao Blue" aria-label="Portimao Blue Paint"></button>
+                        </div>
+                        <div class="config-actions">
+                            <button class="btn btn-primary" id="btn-config-build">Konfigurasikan Sekarang</button>
+                            <button class="btn btn-outline" id="btn-spec-sheet">Spesifikasi Lengkap</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Showcase Vehicle Area -->
+                <div class="hero-visual">
+                    <div class="glow-ring"></div>
+                    <div class="vehicle-wrapper">
+                        <img src="assets/bmw_yellow.png" alt="BMW M4 Coupe Yellow" class="vehicle-img active" id="vehicle-display-img">
+                    </div>
+                    <div class="vehicle-reflection"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cockpit Experience Section (Start Engine & Tachometer) -->
+        <section id="cockpit" class="cockpit-section scroll-reveal">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="badge">M Cockpit Simulator</span>
+                    <h2 class="section-title">Nyalakan Performa M Sejati</h2>
+                    <p class="section-subtitle">Gunakan tombol merah untuk menghidupkan mesin, lalu tahan tombol akselerator untuk memacu RPM dan dengarkan deru mesin TwinPower Turbo.</p>
+                </div>
+
+                <div class="cockpit-simulator glass-card">
+                    <!-- Dashboard Interior Background -->
+                    <div class="cockpit-bg-wrapper">
+                        <img src="assets/bmw_interior.png" alt="BMW M4 Dashboard" class="cockpit-bg-img">
+                        <div class="dashboard-overlay"></div>
+                    </div>
+
+                    <!-- Digital Instruments Layer -->
+                    <div class="digital-instruments">
+                        
+                        <!-- Tachometer and Speedometer (Left/Right Gauges) -->
+                        <div class="instrument-cluster">
+                            <!-- RPM Gauge SVG -->
+                            <div class="gauge-container rpm-gauge">
+                                <svg class="gauge-svg" viewBox="0 0 200 200">
+                                    <!-- Gauge Background Arc -->
+                                    <path class="gauge-track" d="M 40,160 A 80,80 0 1,1 160,160" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="10" stroke-linecap="round" />
+                                    <!-- Dynamic Progress Arc -->
+                                    <path id="gauge-fill" class="gauge-fill-yellow" d="M 40,160 A 80,80 0 1,1 160,160" fill="none" stroke="var(--accent-color)" stroke-width="10" stroke-linecap="round" stroke-dasharray="377" stroke-dashoffset="377" />
+                                    
+                                    <!-- Tick Marks and Labels -->
+                                    <text x="35" y="145" class="gauge-tick-label">0</text>
+                                    <text x="25" y="100" class="gauge-tick-label">2</text>
+                                    <text x="50" y="55" class="gauge-tick-label">4</text>
+                                    <text x="100" y="38" class="gauge-tick-label">6</text>
+                                    <text x="150" y="55" class="gauge-tick-label">8</text>
+                                    <text x="175" y="100" class="gauge-tick-label-red">10</text>
+                                    <text x="155" y="145" class="gauge-tick-label-red">12</text>
+                                </svg>
+                                
+                                <div class="gauge-info">
+                                    <span class="digital-rpm" id="display-rpm">0</span>
+                                    <span class="gauge-unit">RPM x100</span>
+                                </div>
+                            </div>
+
+                            <!-- Speedometer & Central Screen -->
+                            <div class="central-display">
+                                <div class="gear-indicator" id="gear-indicator">N</div>
+                                <div class="speed-indicator">
+                                    <span class="speed-val" id="display-speed">0</span>
+                                    <span class="speed-unit">KM/H</span>
+                                </div>
+                                <div class="mode-indicator">SPORT MODE</div>
+                            </div>
+                        </div>
+
+                        <!-- Engine Controls Glass Box -->
+                        <div class="engine-controls">
+                            <!-- Accelerator Pedal / Clickable Throttle Button -->
+                            <div class="throttle-container">
+                                <button class="btn-pedal" id="btn-throttle" disabled>
+                                    <div class="pedal-face">
+                                        <div class="pedal-stripes"></div>
+                                        <span class="pedal-label">ACCELERATE</span>
+                                    </div>
+                                </button>
+                                <span class="pedal-hint">Klik & Tahan Pedal Gas</span>
+                            </div>
+
+                            <!-- Start Button -->
+                            <div class="start-btn-container">
+                                <button class="btn-start" id="btn-engine-start">
+                                    <div class="btn-inner">
+                                        <span class="start-text-top">START</span>
+                                        <span class="start-text-mid">ENGINE</span>
+                                        <span class="start-text-bottom">STOP</span>
+                                    </div>
+                                </button>
+                                <span class="start-hint" id="engine-status-text">ENGINE IS OFF</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed specs tabs -->
+        <section id="performance" class="performance-section scroll-reveal">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="badge">Spesifikasi Performa</span>
+                    <h2 class="section-title">Keunggulan M Engineering</h2>
+                    <p class="section-subtitle">Dikembangkan dengan teknologi sirkuit balap untuk performa berkendara sehari-hari.</p>
+                </div>
+
+                <div class="specs-tab-container glass-card">
+                    <!-- Tab Buttons -->
+                    <div class="tabs-header">
+                        <button class="tab-btn active" data-tab="engine">M TwinPower Engine</button>
+                        <button class="tab-btn" data-tab="transmission">M Steptronic Transmission</button>
+                        <button class="tab-btn" data-tab="xdrive">M xDrive System</button>
+                    </div>
+
+                    <!-- Tab Content Panels -->
+                    <div class="tabs-content">
+                        <!-- Engine Panel -->
+                        <div class="tab-panel active" id="tab-engine">
+                            <div class="panel-grid">
+                                <div class="panel-info">
+                                    <h3>Mesin 3.0-Liter TwinPower Turbo Inline-6</h3>
+                                    <p>Jantung pacu dari BMW M4 Coupe adalah mesin bensin 6-silinder segaris M TwinPower Turbo berkekuatan tinggi. Mesin ini menyuguhkan respon instan dan distribusi tenaga luar biasa di seluruh rentang RPM.</p>
+                                    <ul class="spec-bullet-list">
+                                        <li><strong>Teknologi Turbocharger:</strong> Two mono-scroll turbochargers, injeksi presisi tinggi, Valvetronic fully variable valve timing, dan Double-VANOS variable camshaft control.</li>
+                                        <li><strong>Pendinginan Maksimal:</strong> Sistem pendinginan balap dengan radiator air terpisah dan cooler minyak mesin & transmisi untuk suhu optimal di lintasan sirkuit.</li>
+                                    </ul>
+                                </div>
+                                <div class="panel-visual">
+                                    <div class="spec-metric-box">
+                                        <span class="metric-num">375 <span class="metric-unit">kW</span></span>
+                                        <span class="metric-desc">Tenaga maksimum setara 503 HP</span>
+                                    </div>
+                                    <div class="spec-metric-box">
+                                        <span class="metric-num">650 <span class="metric-unit">Nm</span></span>
+                                        <span class="metric-desc">Torsi melimpah dari 2,750 hingga 5,500 rpm</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Transmission Panel -->
+                        <div class="tab-panel" id="tab-transmission">
+                            <div class="panel-grid">
+                                <div class="panel-info">
+                                    <h3>8-Speed M Steptronic Transmission</h3>
+                                    <p>Transmisi otomatis 8-speed M Steptronic dengan Drivelogic menawarkan perpindahan gigi yang luar biasa cepat dan responsif. Pengemudi dapat memindahkan gigi secara manual menggunakan paddle shift di setir serat karbon.</p>
+                                    <ul class="spec-bullet-list">
+                                        <li><strong>Drivelogic Modes:</strong> Tiga mode pergantian gigi dari efisien, sporty untuk jalan raya, hingga ultra-cepat teroptimasi untuk sirkuit balap.</li>
+                                        <li><strong>Rev-Matching:</strong> Kontrol perpindahan gigi otomatis menyesuaikan putaran mesin secara presisi saat downshift.</li>
+                                    </ul>
+                                </div>
+                                <div class="panel-visual">
+                                    <div class="spec-metric-box">
+                                        <span class="metric-num">8 <span class="metric-unit">Speed</span></span>
+                                        <span class="metric-desc">Pilihan rasio gigi pendek teroptimasi</span>
+                                    </div>
+                                    <div class="spec-metric-box">
+                                        <span class="metric-num">3 <span class="metric-unit">Modes</span></span>
+                                        <span class="metric-desc">Drivelogic: Drive, Sport, & Track</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- xDrive Panel -->
+                        <div class="tab-panel" id="tab-xdrive">
+                            <div class="panel-grid">
+                                <div class="panel-info">
+                                    <h3>M xDrive Intelligent All-Wheel Drive</h3>
+                                    <p>Sistem penggerak all-wheel drive M xDrive secara dinamis menyalurkan torsi antara roda depan dan roda belakang untuk stabilitas maksimum dan akselerasi luar biasa di segala kondisi jalan.</p>
+                                    <ul class="spec-bullet-list">
+                                        <li><strong>Mode 4WD & 4WD Sport:</strong> Traksi optimal dengan fokus penyaluran tenaga dominan pada roda belakang demi kedinamisan berkendara khas M.</li>
+                                        <li><strong>Mode 2WD (Pure RWD):</strong> Memutus penggerak roda depan secara penuh dan menonaktifkan DSC (Dynamic Stability Control) untuk pengalaman drifting murni.</li>
+                                    </ul>
+                                </div>
+                                <div class="panel-visual">
+                                    <div class="spec-metric-box">
+                                        <span class="metric-num">3 <span class="metric-unit">Drive</span></span>
+                                        <span class="metric-desc">Mode Traksi: 4WD, 4WD Sport, & 2WD</span>
+                                    </div>
+                                    <div class="spec-metric-box">
+                                        <span class="metric-num">Active <span class="metric-unit">M</span></span>
+                                        <span class="metric-desc">Differential yang terintegrasi di poros roda belakang</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Gallery Slider -->
+        <section id="gallery" class="gallery-section scroll-reveal">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="badge">Visual Galeri</span>
+                    <h2 class="section-title">Detail Desain Radikal</h2>
+                    <p class="section-subtitle">Setiap sudut didesain untuk aerodinamika, aliran pendinginan optimal, dan ekspresi gaya motorsport agresif.</p>
+                </div>
+
+                <div class="gallery-slider-container">
+                    <div class="gallery-slider" id="gallery-slider">
+                        <!-- Slide 1 (Yellow BMW Front) -->
+                        <div class="gallery-slide active">
+                            <img src="assets/bmw_yellow.png" alt="BMW M4 Front view Sao Paulo Yellow">
+                            <div class="slide-caption">
+                                <h4>Agresif & Dinamis</h4>
+                                <p>Tampilan depan radikal dengan grill kidney vertikal khas M.</p>
+                            </div>
+                        </div>
+                        <!-- Slide 2 (Green BMW Front) -->
+                        <div class="gallery-slide">
+                            <img src="assets/bmw_green.png" alt="BMW M4 Isle of Man Green">
+                            <div class="slide-caption">
+                                <h4>Isle of Man Green</h4>
+                                <p>Warna ikonik memancarkan kesan sporty nan berkelas.</p>
+                            </div>
+                        </div>
+                        <!-- Slide 3 (Blue BMW Front) -->
+                        <div class="gallery-slide">
+                            <img src="assets/bmw_blue.png" alt="BMW M4 Portimao Blue">
+                            <div class="slide-caption">
+                                <h4>Portimao Blue Metallic</h4>
+                                <p>Semburan warna biru elektrik yang futuristik dan mempesona.</p>
+                            </div>
+                        </div>
+                        <!-- Slide 4 (Interior View) -->
+                        <div class="gallery-slide">
+                            <img src="assets/bmw_interior.png" alt="BMW M4 Cockpit Interior">
+                            <div class="slide-caption">
+                                <h4>M Carbon Bucket Seats & Digital Cluster</h4>
+                                <p>Kokpit berfokus pada pengemudi dengan serat karbon mewah.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slider Controls -->
+                    <button class="slider-control prev" id="btn-gallery-prev" aria-label="Previous Slide">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    <button class="slider-control next" id="btn-gallery-next" aria-label="Next Slide">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
+                    <!-- Slider Dots Indicator -->
+                    <div class="slider-dots" id="slider-dots">
+                        <span class="dot active" data-index="0"></span>
+                        <span class="dot" data-index="1"></span>
+                        <span class="dot" data-index="2"></span>
+                        <span class="dot" data-index="3"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter & Contact Area (Interactive Form) -->
+        <section class="newsletter-section scroll-reveal">
+            <div class="container">
+                <div class="newsletter-card glass-card">
+                    <div class="newsletter-info">
+                        <h2>Tertarik dengan BMW M4?</h2>
+                        <p>Dapatkan update eksklusif, brosur spesifikasi lengkap, dan penawaran khusus dari dealer BMW M Performance terdekat di kota Anda.</p>
+                    </div>
+                    <form class="newsletter-form" id="newsletter-form">
+                        <div class="form-group">
+                            <input type="email" id="newsletter-email" required placeholder="Masukkan alamat email Anda..." aria-label="Email address for updates">
+                            <button type="submit" class="btn btn-primary" id="btn-submit-newsletter">Kirim</button>
+                        </div>
+                        <span class="form-success-msg" id="newsletter-success-msg">Pendaftaran berhasil! Kami akan menghubungi Anda segera.</span>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <span class="bmw-m-stripes">
+                        <span class="stripe-blue"></span>
+                        <span class="stripe-purple"></span>
+                        <span class="stripe-red"></span>
+                    </span>
+                    <span class="logo-text">M PERFORMANCE</span>
+                </a>
+                <p class="footer-desc">BMW M4 Coupe merupakan simbol kedinamisan berkendara tingkat tinggi yang lahir dari lintasan balap dan disempurnakan untuk jalan raya.</p>
+            </div>
+            
+            <div class="footer-links-group">
+                <h4>Models</h4>
+                <a href="#">M4 Coupe</a>
+                <a href="#">M4 Competition</a>
+                <a href="#">M4 CSL</a>
+            </div>
+
+            <div class="footer-links-group">
+                <h4>Experience</h4>
+                <a href="#cockpit">M Cockpit Simulator</a>
+                <a href="#configurator">Paint Configurator</a>
+                <a href="#performance">M Engineering</a>
+            </div>
+
+            <div class="footer-links-group">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+                <p class="dealer-info">Layanan Customer: 1-500-BMW (269)</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container flex-between">
+                <p class="copyright">&copy; 2026 BMW Indonesia. Seluruh hak cipta dilindungi. Desain web landing page oleh M Performance.</p>
+                <div class="legal-links">
+                    <a href="#">Kebijakan Privasi</a>
+                    <a href="#">Syarat & Ketentuan</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS Logic Script -->
+    <script src="app.js"></script>
+</body>
+</html>

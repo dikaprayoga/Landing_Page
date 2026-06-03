@@ -1,0 +1,1506 @@
+/* ==========================================================================
+   BMW M4 Landing Page Stylesheet - Premium Dark Theme
+   ========================================================================== */
+
+/* Design Tokens & Custom Properties */
+:root {
+    /* Color Palette */
+    --bg-dark: #0a0b0d;
+    --bg-dark-gray: #12141c;
+    --bg-card: rgba(20, 22, 28, 0.6);
+    --text-primary: #f3f4f6;
+    --text-secondary: #9ca3af;
+    --text-muted: #6b7280;
+    --white: #ffffff;
+    
+    /* Default Accent Color (Sao Paulo Yellow) */
+    --accent-color: #e5f522;
+    --accent-glow: rgba(229, 245, 34, 0.2);
+    --accent-gradient: linear-gradient(135deg, #e5f522, #abb90d);
+    
+    /* M Power Brand Colors */
+    --m-blue: #008cdb;
+    --m-purple: #232264;
+    --m-red: #e31837;
+    
+    /* System Colors */
+    --red-alert: #ff2a2a;
+    --red-alert-glow: rgba(255, 42, 42, 0.4);
+    
+    /* Layout & Spacing */
+    --container-width: 1200px;
+    --header-height: 80px;
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-slow: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Color Themes Map (Handled via JS updating root variables, but definitions here) */
+.theme-yellow {
+    --accent-color: #e5f522;
+    --accent-glow: rgba(229, 245, 34, 0.2);
+    --accent-gradient: linear-gradient(135deg, #e5f522, #abb90d);
+}
+
+.theme-green {
+    --accent-color: #0ad697;
+    --accent-glow: rgba(10, 214, 151, 0.2);
+    --accent-gradient: linear-gradient(135deg, #0ad697, #059669);
+}
+
+.theme-blue {
+    --accent-color: #2563eb;
+    --accent-glow: rgba(37, 99, 235, 0.25);
+    --accent-gradient: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+
+/* ==========================================================================
+   Resets & Base Settings
+   ========================================================================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    background-color: var(--bg-dark);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-primary);
+    background-color: var(--bg-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+button {
+    font-family: inherit;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+    background: #252833;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}
+
+/* Layout Utilities */
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 24px;
+    width: 100%;
+}
+
+.text-center { text-align: center; }
+.w-full { width: 100%; }
+.mt-4 { margin-top: 1.5rem; }
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ==========================================================================
+   UI Components & Utilities
+   ========================================================================== */
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: #000000;
+    box-shadow: 0 4px 20px var(--accent-glow);
+}
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(255, 255, 255, 0.1), 0 0 15px var(--accent-color);
+    background-color: var(--white);
+}
+
+.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-outline {
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-primary);
+}
+.btn-outline:hover {
+    border-color: var(--accent-color);
+    background-color: rgba(255, 255, 255, 0.03);
+    color: var(--accent-color);
+}
+
+.btn-nav {
+    padding: 10px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    aspect-ratio: 1;
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--accent-color);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 30px;
+}
+
+/* Section Header Styles */
+.section-header {
+    margin-bottom: 4rem;
+}
+.section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+    background: linear-gradient(to right, #ffffff, #888888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.section-subtitle {
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.05rem;
+}
+
+/* Ambient Radial Glow */
+#ambient-glow {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 800px;
+    border-radius: 50%;
+    filter: blur(160px);
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.35;
+    transition: background 1s ease, opacity 0.8s ease;
+}
+
+.ambient-glow-yellow {
+    background: radial-gradient(circle, var(--accent-color) 0%, rgba(0,0,0,0) 70%);
+}
+.ambient-glow-green {
+    background: radial-gradient(circle, #0ad697 0%, rgba(0,0,0,0) 70%);
+}
+.ambient-glow-blue {
+    background: radial-gradient(circle, #2563eb 0%, rgba(0,0,0,0) 70%);
+}
+
+/* Gradient text utility */
+.gradient-text {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: background-image 0.8s ease;
+}
+
+/* ==========================================================================
+   Navigation Header
+   ========================================================================== */
+.main-header {
+    height: var(--header-height);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background: rgba(10, 11, 13, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.header-container {
+    height: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* BMW M Stripes Logo styling */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.bmw-m-stripes {
+    display: flex;
+    gap: 3px;
+    height: 18px;
+    transform: skewX(-20deg);
+}
+.bmw-m-stripes span {
+    width: 6px;
+    height: 100%;
+}
+.stripe-blue { background-color: var(--m-blue); }
+.stripe-purple { background-color: var(--m-purple); }
+.stripe-red { background-color: var(--m-red); }
+
+.logo-text {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    color: var(--white);
+}
+
+/* Nav Links */
+.nav-links {
+    display: flex;
+    gap: 32px;
+}
+
+.nav-link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    position: relative;
+    padding: 8px 0;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--white);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent-color);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--transition-smooth);
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Mobile Menu Toggle Button */
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 16px;
+    z-index: 110;
+}
+.mobile-menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--white);
+    border-radius: 2px;
+    transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+.mobile-menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.mobile-menu-toggle.open span:nth-child(2) { opacity: 0; }
+.mobile-menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile Menu Overlay */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 75%;
+    max-width: 320px;
+    height: 100vh;
+    background: #0f1118;
+    z-index: 99;
+    padding: 120px 40px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    transition: right var(--transition-smooth);
+    border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+.mobile-nav.open {
+    right: 0;
+}
+.mobile-nav-link {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+.mobile-nav-link:hover {
+    color: var(--accent-color);
+}
+
+/* ==========================================================================
+   Hero & Configurator Section
+   ========================================================================== */
+.hero-section {
+    min-height: 100vh;
+    padding-top: calc(var(--header-height) + 40px);
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.hero-info {
+    position: relative;
+    z-index: 10;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    font-weight: 900;
+}
+
+.hero-desc {
+    color: var(--text-secondary);
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    margin-bottom: 2rem;
+    max-width: 520px;
+}
+
+/* Floating Performance Specs */
+.hero-specs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 2rem;
+}
+.spec-card {
+    border-left: 2px solid var(--accent-color);
+    padding: 4px 0 4px 16px;
+    transition: border-color 0.8s ease;
+}
+.spec-value {
+    display: block;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    line-height: 1;
+}
+.spec-unit {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+.spec-label {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-top: 4px;
+}
+
+/* Configurator Panel Inside Hero */
+.config-panel {
+    max-width: 480px;
+}
+.panel-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+.panel-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+}
+.color-selectors {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+.color-swatch {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    position: relative;
+    border: 3px solid #16181f;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
+    transition: var(--transition-fast);
+}
+.color-swatch:hover {
+    transform: scale(1.1);
+}
+.color-swatch.active {
+    box-shadow: 0 0 0 2px var(--accent-color);
+    transform: scale(1.1);
+}
+
+.config-actions {
+    display: flex;
+    gap: 12px;
+}
+.config-actions .btn {
+    flex: 1;
+}
+
+/* Hero Visual Area (BMW M4 Display) */
+.hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 400px;
+}
+
+.glow-ring {
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle, var(--accent-glow) 0%, rgba(0,0,0,0) 65%);
+    z-index: 1;
+    pointer-events: none;
+    transition: background 0.8s ease;
+}
+
+.vehicle-wrapper {
+    position: relative;
+    z-index: 2;
+    width: 110%;
+    transform: translateX(5%);
+    transition: transform var(--transition-slow);
+}
+
+.vehicle-img {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8));
+    opacity: 0;
+    transform: translateX(40px) scale(0.95);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+}
+
+.vehicle-img.active {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+}
+
+.vehicle-reflection {
+    position: absolute;
+    bottom: -10px;
+    width: 90%;
+    height: 40px;
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 70%);
+    z-index: 1;
+    filter: blur(4px);
+}
+
+/* ==========================================================================
+   Cockpit Experience Section (Start Engine & Simulator)
+   ========================================================================== */
+.cockpit-section {
+    padding: 100px 0;
+    position: relative;
+}
+
+.cockpit-simulator {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    min-height: 480px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
+
+.cockpit-bg-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.cockpit-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.4;
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.dashboard-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(10,11,13,0.95) 10%, rgba(10,11,13,0.3) 100%);
+}
+
+/* Engine Active Vibation on simulator container */
+.cockpit-simulator.engine-on .cockpit-bg-img {
+    animation: engine-rumble 0.15s infinite alternate;
+    opacity: 0.65;
+}
+
+/* Instrument HUD layout */
+.digital-instruments {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px;
+}
+
+.instrument-cluster {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.gauge-container {
+    position: relative;
+    width: 180px;
+    height: 180px;
+}
+
+.gauge-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-10deg);
+}
+
+.gauge-track {
+    stroke: rgba(255, 255, 255, 0.08);
+}
+
+.gauge-fill-yellow {
+    stroke: var(--accent-color);
+    stroke-dashoffset: 377;
+    transition: stroke-dashoffset 0.1s linear, stroke 0.8s ease;
+}
+
+.gauge-tick-label {
+    fill: var(--text-secondary);
+    font-size: 11px;
+    font-weight: bold;
+    text-anchor: middle;
+    font-family: 'Outfit', sans-serif;
+}
+.gauge-tick-label-red {
+    fill: var(--red-alert);
+    font-size: 11px;
+    font-weight: bold;
+    text-anchor: middle;
+    font-family: 'Outfit', sans-serif;
+}
+
+.gauge-info {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.digital-rpm {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    line-height: 1;
+    display: block;
+}
+.gauge-unit {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+/* Center Display HUD */
+.central-display {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    padding: 16px 30px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+.gear-indicator {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--accent-color);
+    margin-bottom: 2px;
+}
+.speed-indicator {
+    margin-bottom: 4px;
+}
+.speed-val {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 900;
+    line-height: 1;
+    display: block;
+}
+.speed-unit {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: bold;
+}
+.mode-indicator {
+    font-size: 0.65rem;
+    color: var(--red-alert);
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 4px;
+}
+
+/* Engine Controls Panel */
+.engine-controls {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Accelerator Pedal */
+.throttle-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-pedal {
+    width: 60px;
+    height: 100px;
+    background: #181a21;
+    border: 2px solid #282a35;
+    border-radius: 8px;
+    position: relative;
+    perspective: 150px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+    transition: opacity var(--transition-fast);
+}
+
+.btn-pedal:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.pedal-face {
+    width: 100%;
+    height: 100%;
+    background: #252833;
+    border-radius: 6px;
+    transform: rotateX(15deg);
+    transform-origin: bottom;
+    transition: transform 0.15s ease, background 0.15s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 0;
+    align-items: center;
+}
+
+.pedal-stripes {
+    width: 70%;
+    height: 60%;
+    background: repeating-linear-gradient(
+        90deg,
+        #111,
+        #111 4px,
+        #444 4px,
+        #444 8px
+    );
+    border-radius: 2px;
+}
+
+.pedal-label {
+    font-size: 0.55rem;
+    font-weight: 800;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+}
+
+/* Press pedal active state */
+.btn-pedal:not(:disabled):active .pedal-face, 
+.btn-pedal.pedal-active .pedal-face {
+    transform: rotateX(40deg);
+    background: #1b1d24;
+}
+
+.pedal-hint, .start-hint {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* RED Start Button */
+.start-btn-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-start {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #33070b;
+    border: 3px solid #111;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.8), 0 0 0 4px rgba(255, 255, 255, 0.05);
+    padding: 3px;
+    transition: transform var(--transition-fast);
+}
+
+.btn-start:active {
+    transform: scale(0.95);
+}
+
+.btn-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--m-red) 30%, #a81122 100%);
+    box-shadow: inset 0 2px 4px rgba(255,255,255,0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.start-text-top {
+    font-size: 0.55rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+}
+.start-text-mid {
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.02em;
+}
+.start-text-bottom {
+    font-size: 0.5rem;
+    font-weight: bold;
+    opacity: 0.6;
+}
+
+/* Engine Active button glow styling */
+.cockpit-simulator.engine-on .btn-start {
+    box-shadow: 0 0 20px var(--red-alert-glow), 0 0 0 4px var(--red-alert-glow);
+    animation: start-pulse 2s infinite;
+}
+
+.cockpit-simulator.engine-on .btn-inner {
+    background: radial-gradient(circle, #ff3d52 30%, #e31837 100%);
+}
+
+/* ==========================================================================
+   Specs Tabs Section (Performance)
+   ========================================================================== */
+.performance-section {
+    padding: 100px 0;
+}
+
+.specs-tab-container {
+    max-width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.tabs-header {
+    display: flex;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 16px 20px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-align: center;
+    transition: var(--transition-fast);
+    position: relative;
+}
+
+.tab-btn:hover {
+    color: var(--white);
+}
+
+.tab-btn.active {
+    color: var(--accent-color);
+}
+
+.tab-btn::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent-color);
+    transform: scaleX(0);
+    transition: transform var(--transition-smooth);
+}
+.tab-btn.active::after {
+    transform: scaleX(1);
+}
+
+.tabs-content {
+    position: relative;
+}
+
+.tab-panel {
+    display: none;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.tab-panel.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.panel-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.panel-info h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: var(--white);
+}
+
+.panel-info p {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.spec-bullet-list {
+    list-style: none;
+}
+.spec-bullet-list li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+.spec-bullet-list li strong {
+    color: var(--white);
+}
+.spec-bullet-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    transition: background-color 0.8s ease;
+}
+
+/* Metric Boxes Visual panel */
+.panel-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.spec-metric-box {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+}
+.metric-num {
+    display: block;
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--accent-color);
+    line-height: 1;
+    margin-bottom: 6px;
+    transition: color 0.8s ease;
+}
+.metric-unit {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+.metric-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Gallery Section
+   ========================================================================== */
+.gallery-section {
+    padding: 100px 0;
+    position: relative;
+}
+
+.gallery-slider-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.gallery-slider {
+    display: flex;
+    transition: transform var(--transition-smooth);
+    width: 400%; /* 4 slides */
+}
+
+.gallery-slide {
+    width: 25%; /* 1/4 of container */
+    position: relative;
+    aspect-ratio: 16 / 9;
+}
+
+.gallery-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slide-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 40px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+    color: var(--white);
+}
+.slide-caption h4 {
+    font-size: 1.4rem;
+    margin-bottom: 6px;
+}
+.slide-caption p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+/* Slider buttons */
+.slider-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    backdrop-filter: blur(8px);
+    transition: var(--transition-fast);
+    z-index: 10;
+}
+.slider-control:hover {
+    background: var(--accent-color);
+    color: #000;
+    transform: translateY(-50%) scale(1.05);
+}
+.slider-control.prev { left: 20px; }
+.slider-control.next { right: 20px; }
+
+/* Dots navigation indicators */
+.slider-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transition: var(--transition-fast);
+}
+.dot.active {
+    width: 24px;
+    border-radius: 4px;
+    background: var(--accent-color);
+}
+
+/* ==========================================================================
+   Newsletter Interactive Form Section
+   ========================================================================== */
+.newsletter-section {
+    padding: 60px 0 100px;
+}
+
+.newsletter-card {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.newsletter-info h2 {
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+}
+.newsletter-info p {
+    color: var(--text-secondary);
+}
+
+.newsletter-form {
+    position: relative;
+}
+
+.form-group {
+    display: flex;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 30px;
+    padding: 4px;
+}
+
+.form-group input {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 12px 20px;
+    color: var(--white);
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+.form-group input:focus {
+    outline: none;
+}
+
+.form-group .btn {
+    padding: 10px 24px;
+}
+
+.form-success-msg {
+    display: none;
+    font-size: 0.85rem;
+    color: #10b981;
+    margin-top: 10px;
+    position: absolute;
+    bottom: -24px;
+    left: 20px;
+}
+
+/* ==========================================================================
+   Footer Section
+   ========================================================================== */
+.main-footer {
+    background-color: #050608;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 80px 0 0;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.footer-brand .logo {
+    margin-bottom: 1.5rem;
+}
+.footer-desc {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    max-width: 320px;
+}
+
+.footer-links-group h4 {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+}
+
+.footer-links-group a {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+.footer-links-group a:hover {
+    color: var(--accent-color);
+}
+
+.social-links {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+.social-links a {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    transition: var(--transition-fast);
+}
+.social-links a:hover {
+    background: var(--accent-color);
+    color: #000;
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+.dealer-info {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 30px 0;
+}
+.copyright {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+.legal-links {
+    display: flex;
+    gap: 20px;
+}
+.legal-links a {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+.legal-links a:hover {
+    color: var(--white);
+}
+
+/* ==========================================================================
+   Animations & Transition Effects
+   ========================================================================== */
+
+/* Keyframe Animations */
+@keyframes start-pulse {
+    0% { box-shadow: 0 0 10px var(--red-alert-glow), 0 0 0 4px rgba(255, 42, 42, 0.2); }
+    50% { box-shadow: 0 0 25px rgba(255, 42, 42, 0.6), 0 0 0 8px rgba(255, 42, 42, 0.3); }
+    100% { box-shadow: 0 0 10px var(--red-alert-glow), 0 0 0 4px rgba(255, 42, 42, 0.2); }
+}
+
+@keyframes engine-rumble {
+    0% { transform: scale(1.002) translate(0.3px, 0.3px); }
+    100% { transform: scale(1) translate(-0.3px, -0.3px); }
+}
+
+/* Scroll Animation classes */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.scroll-reveal.reveal-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 32px;
+    }
+    
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+        text-align: center;
+    }
+    .hero-desc {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .hero-specs-grid {
+        max-width: 480px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .config-panel {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .vehicle-wrapper {
+        width: 90%;
+        transform: none;
+    }
+    
+    .panel-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    .panel-visual {
+        flex-direction: row;
+        justify-content: center;
+    }
+    .spec-metric-box {
+        flex: 1;
+    }
+    
+    .newsletter-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 30px;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1.5fr 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Header Menu Navigation */
+    .nav-links, .header-actions .btn-primary {
+        display: none;
+    }
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    .cockpit-simulator {
+        aspect-ratio: auto;
+        height: auto;
+        min-height: 580px;
+    }
+    .digital-instruments {
+        padding: 20px;
+        gap: 40px;
+    }
+    .instrument-cluster {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .gauge-container {
+        width: 160px;
+        height: 160px;
+    }
+    .central-display {
+        width: 80%;
+    }
+    .engine-controls {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .btn-pedal {
+        width: 100px;
+        height: 50px;
+    }
+    .pedal-face {
+        transform: rotateX(0) rotateY(0);
+        padding: 5px;
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+    }
+    .pedal-stripes {
+        width: 40px;
+        height: 20px;
+        background: repeating-linear-gradient(
+            0deg,
+            #111,
+            #111 2px,
+            #444 2px,
+            #444 4px
+        );
+    }
+    /* Press pedal active state for mobile */
+    .btn-pedal:not(:disabled):active .pedal-face, 
+    .btn-pedal.pedal-active .pedal-face {
+        transform: translateY(4px);
+        background: #1b1d24;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    .footer-brand {
+        grid-column: span 2;
+    }
+    .flex-between {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    .hero-specs-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        text-align: left;
+    }
+    .spec-card {
+        border-left: 2px solid var(--accent-color);
+        padding: 2px 0 2px 12px;
+    }
+    
+    .color-selectors {
+        justify-content: center;
+    }
+    .config-actions {
+        flex-direction: column;
+    }
+    
+    .tab-btn {
+        padding: 12px 6px;
+        font-size: 0.85rem;
+    }
+    .panel-visual {
+        flex-direction: column;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+    .footer-brand {
+        grid-column: span 1;
+    }
+}
